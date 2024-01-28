@@ -1,4 +1,4 @@
-name: 'action-monorepo-version-tags-lifecycle'
+name: 'action-monorepo-version-tags-lifecycle-updated'
 description: 'Generate version tags on a monorepo with multiple components'
 branding:
   icon: 'tag'

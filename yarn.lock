@@ -1143,9 +1143,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"action-monorepo-version-tags-lifecycle@workspace:.":
+"action-monorepo-version-tags-lifecycle-updated@workspace:.":
   version: 0.0.0-use.local
-  resolution: "action-monorepo-version-tags-lifecycle@workspace:."
+  resolution: "action-monorepo-version-tags-lifecycle-updated@workspace:."
   dependencies:
     "@actions/core": "npm:1.10.1"
     "@actions/exec": "npm:1.1.1"
