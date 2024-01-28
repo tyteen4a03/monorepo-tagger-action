@@ -17,28 +17,25 @@ env:
 
 jobs:
   quality-checks:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm test
+          node-version: '20'
+      - run: yarn run lint
+      - run: yarn test
 
   build:
     if: github.event_name == 'push'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     needs: quality-checks
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
-      - run: npm ci
-      - run: npm run build
+          node-version: '20'
+      - run: yarn run build
       - name: Commit files
         run: |
           git config user.name "$GITHUB_ACTOR"
