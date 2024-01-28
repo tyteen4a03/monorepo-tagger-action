@@ -61,7 +61,7 @@ module.exports = (octokit, owner, repo) => {
     let data_length = 0;
     let page = 0;
     do {
-      const { data } = await octokit.repos.listTags({
+      const { data } = await octokit.rest.repos.listTags({
         owner,
         repo,
         per_page: 100,
@@ -109,13 +109,13 @@ module.exports = (octokit, owner, repo) => {
    */
   async function createTag(tagName, branch) {
     console.log('Creating tag');
-    const { data: branchData } = await octokit.repos.getBranch({
+    const { data: branchData } = await octokit.rest.repos.getBranch({
       owner,
       repo,
       branch,
     });
     const mainBranchSHA = branchData.commit.sha;
-    const { data: tagData } = await octokit.git.createTag({
+    const { data: tagData } = await octokit.rest.git.createTag({
       owner,
       repo,
       tag: tagName,
@@ -123,7 +123,7 @@ module.exports = (octokit, owner, repo) => {
       object: mainBranchSHA,
       type: 'commit',
     });
-    const { data: createTagData } = await octokit.git.createRef({
+    const { data: createTagData } = await octokit.rest.git.createRef({
       owner,
       repo,
       ref: `refs/tags/${tagName}`,

@@ -39,7 +39,7 @@ module.exports = (octokit, owner, repo) => {
     let data_length = 0;
     let page = 0;
     do {
-      const { data } = await octokit.repos.listBranches({
+      const { data } = await octokit.rest.repos.listBranches({
         owner,
         repo,
         per_page: 100,
@@ -60,7 +60,7 @@ module.exports = (octokit, owner, repo) => {
     // TODO: Review return on error
     try {
       console.log(`Creating ref "refs/heads/${branchName}" with sha: ${github.context.sha}`);
-      await octokit.git.createRef({
+      await octokit.rest.git.createRef({
         owner,
         repo,
         ref: `refs/heads/${branchName}`,

@@ -25,29 +25,31 @@ describe('mode component', () => {
     [owner, repo] = 'test-org/test-repo'.split('/');
 
     octokitMock = {
-      repos: {
-        listTags: jest.fn().mockReturnValue({
-          data: [
-            { name: 'v0.3.0' },
-            { name: 'v0.2.0' },
-            { name: 'hello-v0.99.0' },
-            { name: 'hello-v0.98.0' },
-            { name: 'hello-v0.97.0' },
-          ],
-        }),
-        getBranch: jest.fn().mockReturnValue({
-          data: {
-            name: 'main',
-            commit: {
-              sha: 'sha1234',
+      rest: {
+        repos: {
+          listTags: jest.fn().mockReturnValue({
+            data: [
+              { name: 'v0.3.0' },
+              { name: 'v0.2.0' },
+              { name: 'hello-v0.99.0' },
+              { name: 'hello-v0.98.0' },
+              { name: 'hello-v0.97.0' },
+            ],
+          }),
+          getBranch: jest.fn().mockReturnValue({
+            data: {
+              name: 'main',
+              commit: {
+                sha: 'sha1234',
+              },
             },
-          },
-        }),
-      },
-      git: {
-        createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
-        createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
-      },
+          }),
+        },
+        git: {
+          createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
+          createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
+        },
+      }
     };
 
     core.setOutput = jest.fn();
@@ -90,7 +92,7 @@ describe('mode component', () => {
     expect(core.setFailed).toHaveBeenCalledTimes(0);
     expect(core.setOutput).toHaveBeenCalledTimes(2);
     expect(core.setOutput).toHaveBeenCalledWith('tag', 'hello-v0.98.1');
-    expect(octokitMock.repos.getBranch).toHaveBeenCalledWith({
+    expect(octokitMock.rest.repos.getBranch).toHaveBeenCalledWith({
       branch: 'release/v0.22',
       owner: 'test-org',
       repo: 'test-repo',
@@ -125,35 +127,37 @@ describe('mode product', () => {
   beforeEach(() => {
     [owner, repo] = 'test-org/test-repo'.split('/');
     octokitMock = {
-      repos: {
-        listBranches: jest.fn().mockReturnValue({
-          data: [{ name: 'main' }, { name: 'release/v0.22' }, { name: 'release/v0.23' }],
-        }),
-        listTags: jest.fn().mockReturnValue({
-          data: [
-            { name: 'v0.4-rc.1' },
-            { name: 'v0.3.0' },
-            { name: 'v0.2.0' },
-            { name: 'v0.23.1' },
-            { name: 'v0.23.0' },
-            { name: 'hello-v0.99.0' },
-            { name: 'hello-v0.98.0' },
-            { name: 'hello-v0.97.0' },
-          ],
-        }),
-        getBranch: jest.fn().mockReturnValue({
-          data: {
-            name: 'main',
-            commit: {
-              sha: 'sha1234',
+      rest: {
+        repos: {
+          listBranches: jest.fn().mockReturnValue({
+            data: [{ name: 'main' }, { name: 'release/v0.22' }, { name: 'release/v0.23' }],
+          }),
+          listTags: jest.fn().mockReturnValue({
+            data: [
+              { name: 'v0.4-rc.1' },
+              { name: 'v0.3.0' },
+              { name: 'v0.2.0' },
+              { name: 'v0.23.1' },
+              { name: 'v0.23.0' },
+              { name: 'hello-v0.99.0' },
+              { name: 'hello-v0.98.0' },
+              { name: 'hello-v0.97.0' },
+            ],
+          }),
+          getBranch: jest.fn().mockReturnValue({
+            data: {
+              name: 'main',
+              commit: {
+                sha: 'sha1234',
+              },
             },
-          },
-        }),
-      },
-      git: {
-        createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
-        createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
-      },
+          }),
+        },
+        git: {
+          createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
+          createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
+        },
+      }
     };
 
     core.setOutput = jest.fn();
@@ -267,23 +271,25 @@ describe('version file updater', () => {
     [owner, repo] = 'test-org/test-repo'.split('/');
 
     octokitMock = {
-      repos: {
-        listTags: jest.fn().mockReturnValue({
-          data: [{ name: 'hello-v0.97.0' }],
-        }),
-        getBranch: jest.fn().mockReturnValue({
-          data: {
-            name: 'main',
-            commit: {
-              sha: 'sha1234',
+      rest: {
+        repos: {
+          listTags: jest.fn().mockReturnValue({
+            data: [{ name: 'hello-v0.97.0' }],
+          }),
+          getBranch: jest.fn().mockReturnValue({
+            data: {
+              name: 'main',
+              commit: {
+                sha: 'sha1234',
+              },
             },
-          },
-        }),
-      },
-      git: {
-        createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
-        createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
-      },
+          }),
+        },
+        git: {
+          createTag: jest.fn().mockReturnValue({ data: { sha: 'sha5678' } }),
+          createRef: jest.fn().mockReturnValue({ data: { sha: 'ref12345' } }),
+        },
+      }
     };
 
     fs.writeFile = jest.fn();
