@@ -19,7 +19,7 @@ module.exports = () => {
 
     let filesUpdated = 0;
 
-    versionFiles.forEach((file) => {
+    for (const file of versionFiles) {
       console.log('file ', file);
       // only yml files
       if (!file.file.endsWith('.yml') && !file.file.endsWith('.yaml')) {
@@ -44,7 +44,7 @@ module.exports = () => {
       writeToFile(ymlObj.toString(), file.file);
       console.log(`Updated contents ${ymlObj.toString()}`);
       filesUpdated++;
-    });
+    }
 
     // commit the files
     if (filesUpdated > 0) {
