@@ -48,7 +48,7 @@ To update a version file when creating a new tag you can specify it in the input
 
 ```yaml
 - name: Generate a release tag for Component1
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'component'
     type: 'final'
@@ -69,7 +69,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Generate a release tag for Component1
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'component'
     type: 'final'
@@ -80,7 +80,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Generate a fix tag for Component1
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'component'
     type: 'fix'
@@ -92,7 +92,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Generate a pre-release product tag
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'product'
     type: 'pre-release'
@@ -105,7 +105,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Create a new release branch
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'product'
     type: 'new-release-branch'
@@ -116,7 +116,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Generate a final product tag
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'product'
     type: 'final'
@@ -126,7 +126,7 @@ Action inputs are documented in [action.yml file](action.yml)
 
 ```yaml
 - name: Generate a fix product tag
-  uses: tyteen4a03/monorepo-tagger-action@v3.0
+  uses: tyteen4a03/monorepo-tagger-action-updated@v3.0
   with:
     mode: 'product'
     type: 'fix'
