@@ -1,4 +1,4 @@
-module.exports = function (octokit, owner, repo) {
+module.exports = (octokit, owner, repo) => {
   /**
    * Returns the last tag with a prefix.
    *
@@ -15,7 +15,7 @@ module.exports = function (octokit, owner, repo) {
    * @returns {String} The last pre-release tag found.
    */
   async function getLastPreReleaseTag() {
-    return getLastTag(`^v[0-9]+.[0-9]+-`);
+    return getLastTag("^v[0-9]+.[0-9]+-");
   }
 
   /**
@@ -57,7 +57,7 @@ module.exports = function (octokit, owner, repo) {
    * @returns {List} List with all existing tags names.
    */
   async function getAllTagsNames() {
-    let tagNames = [];
+    const tagNames = [];
     let data_length = 0;
     let page = 0;
     do {

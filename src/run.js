@@ -70,7 +70,7 @@ async function run(
 
   if (type === TYPE_FIX) {
     branchToTag = github.context.ref.replace('refs/heads/', '');
-    if (github.context.payload && github.context.payload.workflow_run) {
+    if (github.context.payload?.workflow_run) {
       // if executed from a workflow
       branchToTag = github.context.payload.workflow_run.head_branch;
     }
@@ -100,16 +100,16 @@ async function run(
     return core.setFailed('Tag creation failed');
   }
 
-  let version = tag.replace(componentPrefix + 'v', '');
+  const version = tag.replace(`${componentPrefix}v`, '');
   let versionInFile = version;
-  if (useTagInVersionsFile != 'false') {
+  if (useTagInVersionsFile !== 'false') {
     versionInFile = tag;
   }
 
   if (!dryRun) {
     // update version filess before the tag is made
     // default values from action inputs are strings, so we need to compare with a string
-    if (updateVersionsIn != 'false') {
+    if (updateVersionsIn !== 'false') {
       console.log(`Update versions in files ${updateVersionsIn}`);
       await versionFileUpdater.updateVersionInFileAndCommit(
         updateVersionsIn,
@@ -119,7 +119,7 @@ async function run(
         commitAuthor,
         commitAuthorEmail
       );
-      console.log(`Version updated in file(s)`);
+      console.log("Version updated in file(s)");
     }
 
     await tags.createTag(tag, branchToTag);

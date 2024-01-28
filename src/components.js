@@ -2,7 +2,7 @@ const { parseVersion } = require('./strings');
 
 const { TYPE_FIX, TYPE_FINAL } = require('./types');
 
-module.exports = function (tags) {
+module.exports = (tags) => {
   /**
    * Computes a fix tag for the component.
    *

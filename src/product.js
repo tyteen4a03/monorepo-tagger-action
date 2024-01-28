@@ -3,7 +3,7 @@ const github = require('@actions/github');
 const { TYPE_PRE_RELEASE, TYPE_FIX, TYPE_FINAL } = require('./types');
 const { parseVersion } = require('./strings');
 
-module.exports = function (tags, branches) {
+module.exports = (tags, branches) => {
   /**
    * Compute a final tag for the product.
    *
@@ -56,7 +56,7 @@ module.exports = function (tags, branches) {
 
     if (type === TYPE_FIX) {
       let currentBranchName = github.context.ref.replace('refs/heads/', '');
-      if (github.context.payload && github.context.payload.workflow_run) {
+      if (github.context.payload?.workflow_run) {
         currentBranchName = github.context.payload.workflow_run.head_branch;
       }
       return computeProductFixTag(releaseBranchPrefix, currentBranchName);

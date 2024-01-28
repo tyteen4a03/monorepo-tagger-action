@@ -7,11 +7,11 @@ describe('update file with version', () => {
   actions.exec = jest.fn();
   const updater = updaterMod();
 
-  let version = 'v3.4';
-  let branch = 'main';
-  let commitMessage = 'test commit message';
-  let author = 'author';
-  let authorEmail = 'author@email.com';
+  const version = 'v3.4';
+  const branch = 'main';
+  const commitMessage = 'test commit message';
+  const author = 'author';
+  const authorEmail = 'author@email.com';
 
   test('error on no yml file', async () => {
     // GIVEN a file that is not yml

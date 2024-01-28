@@ -1,5 +1,5 @@
 function parseVersion(tag) {
-  const regex = new RegExp(`(\\d+).(\\d+)(?:.(\\d+))?`, 'g');
+  const regex = /(\d+).(\d+)(?:.(\d+))?/g;
   const matches = regex.exec(tag);
 
   if (!matches || matches.length <= 0) {

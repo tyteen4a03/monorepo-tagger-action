@@ -64,5 +64,5 @@ outputs:
     description: 'The new version tag that was created'
 
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'

@@ -4,7 +4,7 @@ const core = require('@actions/core');
 const actions = require('@actions/exec');
 const yaml = require('yaml');
 
-module.exports = function () {
+module.exports = () => {
   /**
    * Updates file contents and commit the changes.
    *
@@ -23,7 +23,7 @@ module.exports = function () {
       console.log('file ', file);
       // only yml files
       if (!file.file.endsWith('.yml') && !file.file.endsWith('.yaml')) {
-        core.warning(`Only yml files are valid to update the version.`);
+        core.warning("Only yml files are valid to update the version.");
         return;
       }
 

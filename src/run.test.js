@@ -8,7 +8,9 @@ const { run } = require('./run');
 // jest.setTimeout(100000); // NOTE: uncomment for test debugging
 
 describe('mode component', () => {
-  let octokitMock, owner, repo;
+  let octokitMock;
+  let owner;
+  let repo;
 
   const params = {
     componentPrefix: 'hello-',
@@ -105,7 +107,9 @@ describe('mode component', () => {
 });
 
 describe('mode product', () => {
-  let octokitMock, owner, repo;
+  let octokitMock;
+  let owner;
+  let repo;
 
   const params = {
     mode: 'product',
@@ -245,7 +249,9 @@ describe('mode product', () => {
 });
 
 describe('version file updater', () => {
-  let octokitMock, owner, repo;
+  let octokitMock;
+  let owner;
+  let repo;
 
   const params = {
     componentPrefix: 'hello-',
@@ -303,7 +309,7 @@ describe('version file updater', () => {
 
     // AND the component prefix in the version file was NOT stripped
     const updatedContent = fs.writeFile.mock.calls[0][1];
-    expect(updatedContent).toContain('tag: ' + componentPrefix + expectedTag);
+    expect(updatedContent).toContain(`tag: ${componentPrefix}${expectedTag}`);
   });
 
   test('component version is present in versions file', async () => {
@@ -325,6 +331,6 @@ describe('version file updater', () => {
 
     // AND the component prefix in the version file was NOT stripped
     const updatedContent = fs.writeFile.mock.calls[0][1];
-    expect(updatedContent).toContain('tag: ' + expectedVersion);
+    expect(updatedContent).toContain(`tag: ${expectedVersion}`);
   });
 });

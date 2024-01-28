@@ -1,6 +1,6 @@
 const strings = require('./strings');
 
-describe('strings helpers', function () {
+describe('strings helpers', () => {
   test('parseVersion', () => {
     const version = strings.parseVersion('v1.2.3');
 

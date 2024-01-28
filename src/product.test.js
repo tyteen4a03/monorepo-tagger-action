@@ -11,10 +11,10 @@ describe('product FIX', () => {
     calcPreReleaseVersionBasedOnReleaseBranches: jest.fn(),
   };
 
-  let releaseBranchPrefix = 'release-';
+  const releaseBranchPrefix = 'release-';
   let type;
-  let preReleaseName = 'rc';
-  let currentMajor = 0;
+  const preReleaseName = 'rc';
+  const currentMajor = 0;
 
   test('creates the tag in the release branch when github.context.ref is present', async () => {
     const products = productMod(tags, branches);

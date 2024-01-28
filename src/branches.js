@@ -2,7 +2,7 @@ const github = require('@actions/github');
 const core = require('@actions/core');
 const { parseVersion } = require('./strings');
 
-module.exports = function (octokit, owner, repo) {
+module.exports = (octokit, owner, repo) => {
   /**
    * Creates a new release branch.
    *
@@ -35,7 +35,7 @@ module.exports = function (octokit, owner, repo) {
   }
 
   async function getAllBranchesNames() {
-    let branchNames = [];
+    const branchNames = [];
     let data_length = 0;
     let page = 0;
     do {
@@ -49,7 +49,7 @@ module.exports = function (octokit, owner, repo) {
       data_length = branchNamesPerPage.length;
       branchNames.push(...branchNamesPerPage);
       page++;
-    } while (data_length == 100);
+    } while (data_length === 100);
 
     return branchNames.reverse();
   }
